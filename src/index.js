@@ -11,14 +11,16 @@ const body = document.querySelector('body')
 
 const store = createStore(rootReducer, 0)
 
-console.log(store.getState())
+window.store = store
+
+// console.log(store.getState())
 
 addBtn.addEventListener('click', () => {
-
+ store.dispatch({type: 'INCREMENT'})
 })
 
 subBtn.addEventListener('click', () => {
-
+ store.dispatch({type: 'DECREMENT'})
 })
 
 asyncBtn.addEventListener('click', () => {
@@ -28,3 +30,5 @@ asyncBtn.addEventListener('click', () => {
 themeBtn.addEventListener('click', () => {
     body.classList.toggle('dark')
 })
+
+store.subscribe(() => console.log(store.getState()))
