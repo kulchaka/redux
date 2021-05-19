@@ -2,7 +2,8 @@ export function createStore() {
     const state = {}
     const subscribers = []
     return {
-        dispatch() {
+        //action === {type: 'INCREMENT'}
+        dispatch(action) {
         },
         subscribe(callback) {
             subscribers.push(callback)
