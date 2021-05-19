@@ -13,8 +13,6 @@ const store = createStore(rootReducer, 0)
 
 window.store = store
 
-// console.log(store.getState())
-
 addBtn.addEventListener('click', () => {
  store.dispatch({type: 'INCREMENT'})
 })
@@ -31,4 +29,7 @@ themeBtn.addEventListener('click', () => {
     body.classList.toggle('dark')
 })
 
-store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => {
+    const state = store.getState()
+    counter.textContent = state
+})
