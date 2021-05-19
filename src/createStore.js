@@ -1,10 +1,14 @@
 export function createStore() {
+    const state = {}
+    const subscribers = []
     return {
         dispatch() {
         },
-        subscribe() {
+        subscribe(callback) {
+            subscribers.push(callback)
         },
         getState() {
+            return state
         }
     }
 }
