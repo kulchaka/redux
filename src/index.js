@@ -33,3 +33,5 @@ store.subscribe(() => {
     const state = store.getState()
     counter.textContent = state
 })
+
+store.dispatch({type: 'NULL'})
