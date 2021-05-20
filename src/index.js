@@ -3,6 +3,7 @@ import {applyMiddleware, createStore} from "redux";
 import {rootReducer} from "./redux/rootReducer";
 import {asyncIncrement, decrement, increment} from "./redux/actions";
 import thunk from "redux-thunk";
+import {logger} from "redux-logger/src";
 
 const counter = document.getElementById('counter');
 const addBtn = document.getElementById('add');
@@ -11,7 +12,7 @@ const asyncBtn = document.getElementById('async');
 const themeBtn = document.getElementById('theme');
 const body = document.querySelector('body')
 
-const store = createStore(rootReducer, 0, applyMiddleware(thunk))
+const store = createStore(rootReducer, 0, applyMiddleware(thunk, logger))
 
 window.store = store
 
