@@ -16,14 +16,15 @@ export function asyncIncrement() {
     return function (dispatch) {
         setTimeout(() => {
             dispatch({type: ASYNC_INCREMENT})
-        },2000)
+        }, 2000)
 
     }
 }
 
-export function changeTheme() {
+export function changeTheme(newTheme) {
     return {
-        type: CHANGE_THEME
+        type: CHANGE_THEME,
+        payload: newTheme
     }
 }
 

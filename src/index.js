@@ -17,26 +17,26 @@ const store = createStore(rootReducer, 0, applyMiddleware(thunk, logger))
 window.store = store
 
 addBtn.addEventListener('click', () => {
- store.dispatch(increment())
+    store.dispatch(increment())
 })
 
 subBtn.addEventListener('click', () => {
- store.dispatch(decrement())
+    store.dispatch(decrement())
 })
 
 asyncBtn.addEventListener('click', () => {
- store.dispatch(asyncIncrement())
+    store.dispatch(asyncIncrement())
 })
 
 themeBtn.addEventListener('click', () => {
-store.dispatch(changeTheme())
+    const newTheme = document.body.classList.contains('light') ? 'dark' : 'light'
+    store.dispatch(changeTheme(newTheme))
 })
 
 store.subscribe(() => {
     const state = store.getState()
     counter.textContent = state.counter
     document.body.classList = state.theme.value
-    console.log(state)
 })
 
 store.dispatch({type: 'NULL'})
