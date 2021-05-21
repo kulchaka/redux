@@ -36,7 +36,11 @@ themeBtn.addEventListener('click', () => {
 store.subscribe(() => {
     const state = store.getState()
     counter.textContent = state.counter
-    document.body.classList = state.theme.value
+    document.body.classList = state.theme.value;
+
+    [addBtn, subBtn, asyncBtn].forEach( btn => {
+        btn.disabled = state.theme.disabled
+    })
 })
 
 store.dispatch({type: 'NULL'})
