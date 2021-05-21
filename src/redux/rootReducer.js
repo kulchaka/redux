@@ -1,6 +1,7 @@
-import {ASYNC_INCREMENT, DECREMENT, INCREMENT} from "./types";
+import {ASYNC_INCREMENT, CHANGE_THEME, DECREMENT, INCREMENT} from "./types";
+import {combineReducers} from "redux";
 
-export function rootReducer(state, action) {
+function counterReducer(state = 0, action) {
     if (action.type === INCREMENT) {
         return state + 1
     } else if (action.type === DECREMENT) {
@@ -10,3 +11,20 @@ export function rootReducer(state, action) {
     }
     return state
 }
+
+const initThemeState = {
+    value: 'light'
+}
+
+function themeReducer(state = initThemeState, action) {
+    switch (action.type) {
+        case CHANGE_THEME:
+            return {...state, value: 'dark'}
+    }
+    return state
+}
+
+export const rootReducer = combineReducers({
+    counter: counterReducer,
+    theme: themeReducer
+})
