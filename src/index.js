@@ -1,5 +1,5 @@
 import './styles.css'
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import {rootReducer} from "./redux/rootReducer";
 import {asyncIncrement, changeTheme, decrement, increment} from "./redux/actions";
 import thunk from "redux-thunk";
@@ -12,7 +12,13 @@ const asyncBtn = document.getElementById('async');
 const themeBtn = document.getElementById('theme');
 const body = document.querySelector('body')
 
-const store = createStore(rootReducer, 0, applyMiddleware(thunk, logger))
+const store = createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(thunk, logger),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+)
 
 window.store = store
 
@@ -38,7 +44,7 @@ store.subscribe(() => {
     counter.textContent = state.counter
     document.body.classList = state.theme.value;
 
-    [addBtn, subBtn, asyncBtn].forEach( btn => {
+    [addBtn, subBtn, asyncBtn].forEach(btn => {
         btn.disabled = state.theme.disabled
     })
 })
